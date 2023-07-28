@@ -1,0 +1,6 @@
+*.tfstate
+.terraform/
+bin/
+obj/
+*.backup
+*.hcl
