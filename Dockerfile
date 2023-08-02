@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
-COPY bin/Release/net6.0 .
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
+COPY bin/Release/net7.0 .
+EXPOSE 80 
 
 ENTRYPOINT [ "dotnet", "SignalRHubECS.dll" ]
