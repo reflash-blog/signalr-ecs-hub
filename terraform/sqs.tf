@@ -20,7 +20,8 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
           "AWS": "${aws_iam_role.ecs_task_role.arn}"
       },
       "Action": [
-          "SQS:ReceiveMessage"
+          "SQS:ReceiveMessage",
+          "SQS:DeleteMessage"
       ],
       "Resource": "${aws_sqs_queue.sqs_queue.arn}"
     }
