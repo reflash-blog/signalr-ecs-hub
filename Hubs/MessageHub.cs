@@ -6,13 +6,13 @@ namespace SignalRHubECS;
 
 public class MessageHub: Hub 
 {
-    public async Task ClientConnected(string userId) 
+    public async Task JoinGroup(string groupId) 
     {
-        await Groups.AddToGroupAsync(Context.ConnectionId, userId);
+        await Groups.AddToGroupAsync(Context.ConnectionId, groupId);
     }
 
-    public async Task BroadcastMessage(string userId, string message) 
+    public async Task BroadcastMessage(string groupId, string method, string message) 
     {
-        await Clients.Group(userId).SendAsync("NewMessage", message);
+        await Clients.Group(groupId).SendAsync(method, message);
     }
 }

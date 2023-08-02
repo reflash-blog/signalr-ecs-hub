@@ -19,7 +19,7 @@ public class MessageController : ControllerBase
     [HttpPost("broadcast")]
     public async Task<ActionResult> BroadcastMessage([FromBody] MessageBroadcastRequest request)
     {
-        await _hubContext.Clients.Group(request.UserId).SendAsync("NewEvent", request.Message);
+        await _hubContext.Clients.Group(request.GroupId).SendAsync(request.Method, request.Message);
         return Ok();
     }
 }

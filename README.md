@@ -26,3 +26,8 @@ Specify `test.example.com` as a Common Name:
 `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`
 Remember the key phrase and convert the key to RSA key (AWS doesn't accept the default format)
 `openssl rsa -in key.pem > private-rsa-key.pem`
+
+To test via postman:
+Websocket to wss://localhost:7093/MessageHub
+Send this message `{"protocol":"json","version":1}` (special character is required)
+Join group `{ "type": 1, "target": "ClientConnected", "arguments": ["user-id"] }`

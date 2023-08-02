@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR();
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
+builder.Services.AddHostedService<MessageIngestionService>();
 
 var app = builder.Build();
 
