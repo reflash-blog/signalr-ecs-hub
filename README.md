@@ -30,4 +30,4 @@ Remember the key phrase and convert the key to RSA key (AWS doesn't accept the d
 To test via postman:
 Websocket to wss://localhost:7093/MessageHub
 Send this message `{"protocol":"json","version":1}` (special character is required)
-Join group `{ "type": 1, "target": "ClientConnected", "arguments": ["user-id"] }`
+Join group `{ "type": 1, "target": "JoinGroup", "arguments": ["user-id"] }`
