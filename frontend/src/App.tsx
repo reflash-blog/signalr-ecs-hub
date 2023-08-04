@@ -8,9 +8,8 @@ function App() {
 
   useEffect(() => {
     const connect = async () => {
-      console.log('connecting');
       const newConnection = new HubConnectionBuilder()
-        .withUrl("https://localhost:7093/MessageHub", {
+        .withUrl(`https://${process.env.REACT_APP_ALB_URL}/MessageHub`, {
           transport: HttpTransportType.WebSockets
         })
         .withAutomaticReconnect()

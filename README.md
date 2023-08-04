@@ -8,7 +8,18 @@ To start the server
 dotnet run
 ```
 
-To deploy the infrastructure
+To deploy the infrastructure (don't forget to check you users permissions in AWS - the list of policies used by me is below)
+```
+CloudWatchLogsFullAccess
+AmazonEC2FullAccess
+IAMFullAccess
+AmazonS3FullAccess
+AmazonElasticMapReduceforEC2Role
+AmazonEC2ContainerRegistryFullAccess
+AWSCertificateManagerFullAccess
+AWSCloudFormationFullAccess
+AmazonEC2ContainerServiceFullAccess
+```
 ```
 cd terraform
 terraform init
@@ -31,3 +42,5 @@ To test via postman:
 Websocket to wss://localhost:7093/MessageHub
 Send this message `{"protocol":"json","version":1}` (special character is required)
 Join group `{ "type": 1, "target": "JoinGroup", "arguments": ["user-id"] }`
+
+Website is deployed to S3 (see signalr-bucket part in terraform/frontend.tf): https://signalr-bucket.s3-website-eu-west-1.amazonaws.com/

@@ -13,10 +13,12 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+var origin = Environment.GetEnvironmentVariable("ORIGIN") ?? "https://localhost:3000";
 app.UseCors(builder => 
 {
     builder
-        .WithOrigins("https://localhost:3000")
+        .WithOrigins(origin)
         // .SetIsOriginAllowed((host) => true)
         .AllowAnyMethod()
         .AllowAnyHeader()

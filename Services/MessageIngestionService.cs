@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,11 +22,13 @@ public class MessageIngestionService: BackgroundService
     {
         _hubContext = hubContext;
         _sqsClient = new AmazonSQSClient(RegionEndpoint.EUWest1);
-        _sqsEndpoint = "https://sqs.eu-west-1.amazonaws.com/937371417888/signalr-sqs-queue";
+        _sqsEndpoint = Environment.GetEnvironmentVariable("SQS_URL");
     }
 
     protected override async Task ExecuteAsync(CancellationToken token) 
     {
+        if (string.IsNullOrWhiteSpace(_sqsEndpoint)) return;
+            
         var receiveRequest = GetReceiveMessageRequest();
 
         while(!token.IsCancellationRequested)

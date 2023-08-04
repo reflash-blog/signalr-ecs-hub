@@ -64,7 +64,16 @@ resource "aws_ecs_task_definition" "main" {
     name        = "${var.name}-container-${var.environment}"
     image       = "${aws_ecr_repository.signalr_ecr.repository_url}:latest"
     essential   = true
-    environment = []
+    environment = [
+      {
+        name = "SQS_URL",
+        value = aws_sqs_queue.sqs_queue.url
+      },
+      {
+        name = "ORIGIN",
+        value = "http://${aws_s3_bucket.signalr-bucket.bucket}.s3-website-${var.region}.amazonaws.com"
+      }
+    ]
     portMappings = [{
       protocol      = "tcp"
       containerPort = var.container_port
@@ -117,11 +126,5 @@ resource "aws_ecs_service" "main" {
     target_group_arn = aws_alb_target_group.main.id
     container_name   = "${var.name}-container-${var.environment}"
     container_port   = var.container_port
-  }
-
-  # we ignore task_definition changes as the revision changes on deploy
-  # of a new version of the application
-  lifecycle {
-    ignore_changes = [task_definition]
   }
 }
