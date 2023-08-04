@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "signalr-bucket" {
   bucket = "signalr-bucket"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "signalr-bucket-public-access" {
