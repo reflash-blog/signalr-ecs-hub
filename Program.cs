@@ -16,7 +16,8 @@ app.UseRouting();
 app.UseCors(builder => 
 {
     builder
-        .WithOrigins("https://localhost:5088")
+        .WithOrigins("https://localhost:3000")
+        // .SetIsOriginAllowed((host) => true)
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();
