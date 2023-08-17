@@ -45,3 +45,5 @@ Send this message `{"protocol":"json","version":1}` (special character is requi
 Join group `{ "type": 1, "target": "JoinGroup", "arguments": ["user-id"] }`
 
 Website is deployed to S3 (see signalr-bucket part in terraform/frontend.tf): https://signalr-bucket.s3-website-eu-west-1.amazonaws.com/
+
+If you're getting SSL errors in console - navigate to ALB server in the browser and accept invalid certificate, after that connection will work properly
