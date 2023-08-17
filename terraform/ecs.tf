@@ -72,6 +72,10 @@ resource "aws_ecs_task_definition" "main" {
       {
         name = "ORIGIN",
         value = "http://${aws_s3_bucket.signalr-bucket.bucket}.s3-website-${var.region}.amazonaws.com"
+      },
+      {
+        name = "ELASTICACHE_REDIS_CONNECTION_STRING",
+        value = "${aws_elasticache_cluster.main.cache_nodes[0].address}:${aws_elasticache_cluster.main.cache_nodes[0].port}"
       }
     ]
     portMappings = [{

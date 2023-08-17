@@ -3,7 +3,9 @@ using SignalRHubECS;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSignalR();
+builder.Services
+    .AddSignalR()
+    .AddStackExchangeRedis(Environment.GetEnvironmentVariable("ELASTICACHE_REDIS_CONNECTION_STRING"));
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 builder.Services.AddHostedService<MessageIngestionService>();

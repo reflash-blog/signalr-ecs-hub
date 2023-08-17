@@ -19,6 +19,7 @@ AmazonEC2ContainerRegistryFullAccess
 AWSCertificateManagerFullAccess
 AWSCloudFormationFullAccess
 AmazonEC2ContainerServiceFullAccess
+AmazonElastiCacheFullAccess
 ```
 ```
 cd terraform

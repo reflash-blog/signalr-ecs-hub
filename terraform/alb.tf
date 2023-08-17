@@ -14,6 +14,10 @@ resource "aws_alb_target_group" "main" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
+
+  stickiness {
+    type = "lb_cookie"
+  }
  
   health_check {
    healthy_threshold   = "3"
